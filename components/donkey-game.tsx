@@ -92,7 +92,7 @@ const DonkeyGame: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col space-y-8 h-full pt-32">
+    <div className="flex flex-col space-y-8 h-full py-32">
       {
         hardMode && !flash && !showResults && (
           <div className="fixed inset-0 w-full h-full bg-black z-40 flex justify-center items-center pointer-events-none">

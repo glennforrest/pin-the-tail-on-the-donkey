@@ -31,7 +31,7 @@ const DonkeyGame: React.FC = () => {
   const winningCoordinates = {
     x1: 50,
     x2: 70,
-    y1: 134,
+    y1: 122,
     y2: 167,
   };
 

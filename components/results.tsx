@@ -1,10 +1,10 @@
 export default function Results({
   won,
-  resetGame,
+  playAgain,
   setupHardMode,
 }: {
   won: boolean
-  resetGame: () => void
+  playAgain: () => void
   setupHardMode: () => void
 }) {
   return (
@@ -22,7 +22,7 @@ export default function Results({
       <div className="flex justify-center space-x-2">
         <button
           className="font-inter mt-4 bg-brown-800 hover:bg-brown-800 text-white font-medium py-2 px-4 rounded transition"
-          onClick={resetGame}
+          onClick={playAgain}
         >
           Play Again
         </button>

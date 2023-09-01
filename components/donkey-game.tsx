@@ -12,6 +12,11 @@ const DonkeyGame: React.FC = () => {
     setTailPosition({ x: 0, y: 0 });
   };
 
+  const playAgain = () => {
+    setHardMode(false)
+    resetGame()
+  }
+
   const {
     flash,
     hardMode,
@@ -52,16 +57,10 @@ const DonkeyGame: React.FC = () => {
     setWon(checkPinnedTheAss(x, y));
   };
 
-  useEffect(() => {
-    if (showResults) {
-      setHardMode(false)
-    }
-  }, [showResults, setHardMode])
-
   return (
     <div className="flex flex-col space-y-8 h-full pt-32">
       {
-        hardMode && !flash && (
+        hardMode && !flash && !showResults && (
           <div className="fixed inset-0 w-full h-full bg-black z-40 flex justify-center items-center pointer-events-none">
             {
               countdown > 0 && (
@@ -79,7 +78,7 @@ const DonkeyGame: React.FC = () => {
         transform: `translate(${hardModeTransforms.x}px, ${hardModeTransforms.y}px)`,
       }}>
         <div
-          className="relative w-96 h-96 mx-auto cursor-pointer"
+          className={`relative w-96 h-96 mx-auto ${!hardMode ? 'cursor-pointer' : ''}`}
           onClick={handleClick}
         >
           <Image
@@ -88,6 +87,16 @@ const DonkeyGame: React.FC = () => {
             className="w-full h-full object-cover"
             fill
           />
+
+          {
+            hardMode && <Image
+              className="absolute right-0 top-10 -rotate-12"
+              src="/sunglasses.png"
+              alt="Yooooo"
+              width={153}
+              height={102}
+            />
+          }
 
           {showResults && (
             <>
@@ -117,7 +126,7 @@ const DonkeyGame: React.FC = () => {
           )}
         </div>
 
-        {showResults && <Results won={won} setupHardMode={setupHardMode} resetGame={resetGame} />}
+        {showResults && <Results won={won} setupHardMode={setupHardMode} playAgain={playAgain} />}
       </div>
     </div>
   );

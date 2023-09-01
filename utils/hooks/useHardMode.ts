@@ -10,6 +10,7 @@ export default function useHardMode(resetGame: () => void) {
 
   const setupHardMode = () => {
     resetGame();
+    setHardMode(false);
     setHardMode(true);
   };
 

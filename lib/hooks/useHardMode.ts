@@ -9,9 +9,13 @@ export default function useHardMode(resetGame: () => void) {
   const [hardModeTransforms, setHardModeTransforms] = useState<{ x: number; y: number }>({ x: 0, y: 0, });
 
   const setupHardMode = () => {
-    resetGame();
     setHardMode(false);
-    setHardMode(true);
+
+    resetGame();
+
+    setTimeout(() => {
+      setHardMode(true);
+    }, 25)
   };
 
   useEffect(() => {
@@ -24,7 +28,7 @@ export default function useHardMode(resetGame: () => void) {
 
       // start a timer before the image will flash
       const timer = setInterval(() => {
-        setCountdown((prev) => prev - 1);
+        setCountdown((prev) => (prev - 1) < 0 ? 0 : prev - 1);
       }, 1000);
 
       return () => clearInterval(timer);

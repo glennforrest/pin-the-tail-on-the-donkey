@@ -56,7 +56,7 @@ const DonkeyGame: React.FC = () => {
     if (showResults) {
       setHardMode(false)
     }
-  }, [showResults])
+  }, [showResults, setHardMode])
 
   return (
     <div className="flex flex-col space-y-8 h-full pt-32">

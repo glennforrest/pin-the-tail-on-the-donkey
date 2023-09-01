@@ -31,12 +31,12 @@ const DonkeyGame: React.FC = () => {
   const winningCoordinates = {
     x1: 50,
     x2: 70,
-    y: 134,
+    y1: 134,
     y2: 167,
   };
 
   const checkPinnedTheAss = (x: number, y: number): boolean => {
-    return x > winningCoordinates.x1 && x < winningCoordinates.x2;
+    return x > winningCoordinates.x1 && x < winningCoordinates.x2 && y > winningCoordinates.y1 && y < winningCoordinates.y2;
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -60,6 +60,17 @@ const DonkeyGame: React.FC = () => {
 
   return (
     <div className="flex flex-col space-y-8 h-full pt-32">
+      {
+        hardMode && !flash && (
+          <div className="fixed inset-0 w-full h-full bg-black z-40 flex justify-center items-center pointer-events-none">
+            {
+              countdown > 0 && (
+                <span className="text-white text-2xl">{countdown}</span>
+              )
+            }
+          </div>
+        )
+      }
       <h1 className="text-center text-5xl lg:text-6xl font-bold mb-4 border-b-4 border-brown-800">
         Pin the Tail on the Donkey
       </h1>
@@ -71,18 +82,6 @@ const DonkeyGame: React.FC = () => {
           className="relative w-96 h-96 mx-auto cursor-pointer"
           onClick={handleClick}
         >
-          {
-            hardMode && !flash && (
-              <div className="absolute inset-0 w-full h-full bg-black z-40 flex justify-center items-center">
-                {
-                  countdown > 0 && (
-                    <span className="text-white text-2xl">{countdown}</span>
-                  )
-                }
-              </div>
-            )
-          }
-
           <Image
             src="/donkey.jpg"
             alt="Donkey"

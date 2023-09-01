@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+const flashDurationInMs = 75
+
 export default function useHardMode(resetGame: () => void) {
   const [hardMode, setHardMode] = useState<boolean>(false);
   const [flash, setFlash] = useState<boolean>(false);
@@ -43,10 +45,9 @@ export default function useHardMode(resetGame: () => void) {
 
   useEffect(() => {
     if (flash) {
-      // flash the image after Xms
       setTimeout(() => {
         setFlash(false)
-      }, 12)
+      }, flashDurationInMs)
     }
   }, [flash])
 

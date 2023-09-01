@@ -14,7 +14,7 @@ export default function Results({
           won ? (
             <span>You Won!</span>
           ) : (
-            <span>You're Shit!</span>
+            <span>You&apos;re Shit!</span>
           )
         }
       </h2>

@@ -6,7 +6,7 @@ import ConfettiExplosion from "react-confetti-explosion";
 
 const DonkeyGame: React.FC = () => {
   const [won, setWon] = useState<boolean>(false);
-  const [showResults, setShowResults] = useState<boolean>(true);
+  const [showResults, setShowResults] = useState<boolean>(false);
   const [tailPosition, setTailPosition] = useState<{ x: number; y: number }>({
     x: 0,
     y: 0,

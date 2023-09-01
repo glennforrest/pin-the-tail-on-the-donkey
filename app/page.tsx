@@ -10,7 +10,7 @@ const Home: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container mx-auto min-h-screen flex items-center justify-center">
+      <main className="container mx-auto min-h-screen flex justify-center">
         <DonkeyGame />
       </main>
     </div>

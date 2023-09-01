@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
+import ConfettiExplosion from "react-confetti-explosion";
 
 const DonkeyGame: React.FC = () => {
   const [won, setWon] = useState<boolean>(false);
@@ -41,7 +42,7 @@ const DonkeyGame: React.FC = () => {
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center flex flex-col space-y-8">
       <h1 className="text-3xl font-bold mb-4">Pin the Tail on the Donkey</h1>
 
       <div
@@ -56,22 +57,35 @@ const DonkeyGame: React.FC = () => {
         />
 
         {showResults && (
-          <Image
-            src="/donkey-tail.png"
-            alt="Donkey Tail"
-            width={133}
-            height={256}
-            className="origin-bottom-right absolute left-[calc(-25%-28px)]"
-            style={{
-              transform: `translate(${tailPosition.x}px, ${tailPosition.y}px)`,
-            }}
-          />
+          <>
+            <Image
+              src="/donkey-tail.png"
+              alt="Donkey Tail"
+              width={133}
+              height={256}
+              className="origin-bottom-right absolute left-[calc(-25%-28px)]"
+              style={{
+                transform: `translate(${tailPosition.x}px, ${tailPosition.y}px)`,
+              }}
+            />
+
+            {won && (
+              <ConfettiExplosion
+                force={0.8}
+                duration={3000}
+                particleCount={350}
+                width={1600}
+                style={{
+                  transform: `translate(${tailPosition.x}px, ${tailPosition.y}px)`,
+                }}
+              />
+            )}
+          </>
         )}
       </div>
       {showResults && (
         <>
-          {won && <h2>YOU WON</h2>}
-          {!won && <h2>YOU suck</h2>}
+          <h2 className="text-5xl font-bold">YOU {won ? "won" : "suck"}</h2>
 
           <button
             className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
